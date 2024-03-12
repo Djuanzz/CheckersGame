@@ -16,11 +16,15 @@ public class BoxManager : MonoBehaviour, IDropHandler
             GameObject droppedPiece = ev.pointerDrag;
             DarkPiece darkPiece = droppedPiece.GetComponent<DarkPiece>();
             if(darkPiece){
-                darkPiece.parentAfterDrag = transform;
+                if(darkPiece.Movement(boxPosition)){
+                    darkPiece.parentAfterDrag = transform;
+                }
             }
             LightPiece lightPiece = droppedPiece.GetComponent<LightPiece>();
             if(lightPiece){
-                lightPiece.parentAfterDrag = transform;
+                if(lightPiece.Movement(boxPosition)){
+                    lightPiece.parentAfterDrag = transform;
+                }
             }
         }
     }
