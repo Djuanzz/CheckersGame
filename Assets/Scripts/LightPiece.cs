@@ -9,6 +9,7 @@ public class LightPiece : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
     private BoxPosition boxPosition;
+    public GameState gameState;
     public void OnBeginDrag(PointerEventData ev){
         boxPosition.x = transform.parent.gameObject.GetComponent<BoxManager>().boxPosition.x;
         boxPosition.y = transform.parent.gameObject.GetComponent<BoxManager>().boxPosition.y;

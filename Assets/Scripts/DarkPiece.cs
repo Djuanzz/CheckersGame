@@ -9,6 +9,11 @@ public class DarkPiece : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
     private BoxPosition boxPosition;
+    public GameState gameState;
+    private void Start(){
+        gameState = GameObject.Find("Player").GetComponent<GameState>();
+        Debug.Log(gameState);
+    }
     public void OnBeginDrag(PointerEventData ev){
         boxPosition.x = transform.parent.gameObject.GetComponent<BoxManager>().boxPosition.x;
         boxPosition.y = transform.parent.gameObject.GetComponent<BoxManager>().boxPosition.y;

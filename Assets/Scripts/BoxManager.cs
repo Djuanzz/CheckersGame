@@ -10,6 +10,11 @@ public class BoxManager : MonoBehaviour, IDropHandler
     public LightPiece lightPiecePrefabs;
     public RectTransform boxPanel;
     public BoxPosition boxPosition;
+    public GameState gameState;
+    private void Start(){
+        gameState = GameObject.Find("Player").GetComponent<GameState>();
+        Debug.Log(gameState);
+    }
 
     public void OnDrop(PointerEventData ev){
         if(transform.childCount == 0){
@@ -18,12 +23,14 @@ public class BoxManager : MonoBehaviour, IDropHandler
             if(darkPiece){
                 if(darkPiece.Movement(boxPosition)){
                     darkPiece.parentAfterDrag = transform;
+                    gameState.ChangeState();
                 }
             }
             LightPiece lightPiece = droppedPiece.GetComponent<LightPiece>();
             if(lightPiece){
                 if(lightPiece.Movement(boxPosition)){
                     lightPiece.parentAfterDrag = transform;
+                    gameState.ChangeState();
                 }
             }
         }
